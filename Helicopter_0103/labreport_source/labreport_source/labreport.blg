@@ -1,5 +1,0 @@
-[0] Config.pm:343> INFO - This is Biber 2.5
-[0] Config.pm:346> INFO - Logfile is 'labreport.blg'
-[70] biber-darwin:290> INFO - === Wed Mar 15, 2017, 11:43:18
-[96] Utils.pm:165> ERROR - labreport.bcf is malformed, last biblatex run probably failed. Deleted labreport.bbl
-[96] Biber.pm:112> INFO - ERRORS: 1
