@@ -1,18 +1,70 @@
 \addcontentsline{toc}{section}{Appendix} % Remove this if you don't want the appendix included in the table of contents.
 \appendix
 
-\section{MATLAB Code}\label{sec:matlab}
-This section should contain your MATLAB code. DO NOT attach files posted online (that you didn't write). Note that the method used to input code below does not look as pretty when the lines are too long.
 
-\subsection{plot\_constraint.m}\label{sec:plot_constraint_m}
-\lstinputlisting{code/plot_constraint.m}\section{Simulink Diagrams}\label{sec:simulink}
-This section should contain your Simulink diagrams. Just like the plots, these should be in vector format, like in \Cref{fig:simulink}. Make them tidy enough to understand.
+\section{Helicopter model}\label{sec:helimodel}
 
-\subsection{A Simulink Diagram}
-\Cref{fig:simulink} shows a Simulink diagram. You can use the \texttt{print\_simulink.m} function, included in the source code repository for this document, to export a Simulink model to EPS\@.
-\begin{figure}[htb]
+The equations in \ref{eq:model_al} are the equations of motion describing the helicopter. The constants in the equations are described in Table \ref{tab:parameters}. The variables are explained in Table \ref{tab:variables}.
+
+\begin{subequations}\label{eq:model_al}
+	\begin{align}
+		\ddot{e} + K_{3} K_{ed} \dot{e} + K_{3} K_{ep} e &= K_{3} K_{ep} e_{c} \label{eq:model_se_al_elev} \\
+		\ddot{p} + K_{1} K_{pd} \dot{p} + K_{1} K_{pp} p &= K_{1} K_{pp} p_{c} \label{eq:model_se_al_pitch} \\
+		\dot{\lambda} &= r \label{eq:model_se_al_lambda} \\
+		\dot{r} &= -K_{2} p \label{eq:model_se_al_r} 
+	\end{align}
+\end{subequations}
+
+
+\begin{table}[tbp]
 	\centering
-		\includegraphics[width = \textwidth]{figures/simulink.pdf}
-	\caption{A Simulink diagram.}
-\label{fig:simulink}
-\end{figure}
+	\caption{Variables.}
+	\begin{tabular}{lll}
+		\toprule
+		Symbol & Variable & Unit \\
+		\midrule
+		$e$ & Elevation & \radian\\
+		$\dot e$ & Elevation rate & \radian\per\second\\
+		$e_c$ & Elevation reference & \radian\\
+		$\lambda$ & Travel & \radian\\
+		$r$ & Travel rate & \radian\per\second\\
+		$p$ & Pitch & \radian\\
+		$\dot p$ & Pitch rate & \radian\per\second\\
+		$p_c$ & Pitch reference & \radian\\
+		\bottomrule
+	\end{tabular}
+\label{tab:variables}
+\end{table}
+
+\begin{table}[tbp]
+	\centering
+	\caption{Parameters and values.}
+	\begin{tabular}{llll}
+		\toprule
+		Symbol & Parameter & Value & Unit \\
+		\midrule
+		$l_a$ & Distance from elevation axis to helicopter body & $0.63$ & \meter\\
+		$l_h$ & Distance from pitch axis to motor & $0.18$ & \meter\\
+		$K_f$ & Force constant motor & $0.25$ & \newton\per\volt\\
+		$J_e$ & Moment of inertia for elevation & $0.83$ & \kilogram\usk\meter\squared\\
+		$J_t$ & Moment of inertia for travel & $0.83$ & \kilogram\usk\meter\squared\\
+		$J_p$ & Moment of inertia for pitch & $0.034$ & \kilogram\usk\meter\squared\\
+		$m_h$ & Mass of helicopter & $1.05$ & \kilogram\\
+		$m_w$ & Balance weight & $1.87$ & \kilogram\\
+		$m_g$ & Effective mass of the helicopter & $0.05$ & \kilogram\\
+		$K_p$ & Force to lift the helicopter from the ground & $0.49$ & \newton\\
+		\bottomrule
+	\end{tabular}
+\label{tab:parameters}
+\end{table}
+
+
+
+\newpage
+\section{MATLAB Code}\label{sec:matlab}
+\lstinputlisting[label=lst:ex102,caption=Code from ex 10.2 , frame = single]{../src/ex_10_2/ex10_2.m}
+\lstinputlisting[label=lst:ex103,caption=Code from ex 10.3 , frame = single]{../src/ex_10_3/ex10_3.m}
+\lstinputlisting[label=lst:ex104,caption=Code from ex 10.4 , frame = single]{../src/ex_10_4/ex10_4.m}
+
+\subsection{Simulink Diagram}\label{sec:simulink}
+
