@@ -1,1 +1,0 @@
-   helicopter_10_4.c 
