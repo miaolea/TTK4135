@@ -36,7 +36,8 @@ xu(3)   = uu;
 vlb(N*nx+N*nu)  = 0;
 vub(N*nx+N*nu)  = 0;
 
-%% Generate the matrix Q and the vector c (objecitve function weights in the QP problem) 
+%% Generate the matrix Q and the vector c
+%% (objecitve function weights in the QP problem) 
 Q = kron(eye(N),diag([1 zeros(1,nx-1)]));
 R = kron(eye(N),q);
 c = zeros(N*(nx+nu),1);
@@ -52,7 +53,7 @@ beq(1:nx) = A_d*x0;
 
 %% Solve QP
 tic
-[z,lambda] = quadprog(G,c,[],[],Aeq,beq,vlb,vub,x0); % hint: quadprog
+[z,lambda] = quadprog(G,c,[],[],Aeq,beq,vlb,vub,x0);
 t1=toc;
 
 %% Extract control inputs and states
