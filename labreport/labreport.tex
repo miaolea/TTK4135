@@ -1,6 +1,7 @@
-\input{preamble} % The preamble specifies all included packages and related parameters.
-% \input simply inserts the contents of the file, while \include forces a \newpage.
-% See \input vs. \include: http://tex.stackexchange.com/questions/246/when-should-i-use-input-vs-include
+\documentclass[11pt, a4paper, USenglish]{article} % change ``USenglish'' to ``norsk'' if applicable.
+
+\usepackage{kyblab} % Contains all included packages. See kyblab.sty.
+\addbibresource{bibliography.bib} % Makes the bibliography file available to biblatex.
 
 \begin{document}
 
@@ -37,6 +38,8 @@
 \include{part3}
 \include{conclusion}
 \include{appendix}
+% \input simply inserts the contents of the file, while \include forces a \newpage.
+% See \input vs. \include: http://tex.stackexchange.com/questions/246/when-should-i-use-input-vs-include
 
 % References
 \newpage

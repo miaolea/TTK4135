@@ -1,4 +1,4 @@
-\documentclass[11pt, a4paper, USenglish]{article} % change ``USenglish'' to ``norsk'' if applicable.
+\ProvidesPackage{kyblab}
 
 % Search http://ctan.org or type texdoc <package name> in a terminal to access LaTeX package documentation.
 \usepackage{babel} % babel and csquotes are packages for multilingual (e.g. Norwegian) support.
@@ -13,14 +13,13 @@
 \usepackage{listings} % Provides source code listings.
 \usepackage{todonotes} % Provides several handy TODO commands.
 \usepackage[
-  backend=biber, 
+  backend=bibtex,
   style=numeric,
   isbn=false,
   doi=false]{biblatex} % http://tex.stackexchange.com/questions/25701/bibtex-vs-biber-and-biblatex-vs-natbib
 \usepackage{hyperref} % Provides clickable links. Always load last, but before cleveref.
 \usepackage{cleveref} % Provides the \Cref command, for cross-referencing of equations, sections, figures and tables. Always load last.
 
-\addbibresource{bibliography.bib} % Makes the bibliography file available to biblatex.
 
 % ``listings'' package settings
 \definecolor{dkgreen}{rgb}{0,0.6,0}
