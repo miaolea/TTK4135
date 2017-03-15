@@ -71,10 +71,12 @@ Aeq = [Aeq1 Aeq2];
 beq = [A_d*x0;zeros(nx*(N-1),1)];
 
 %% Calculate optimal trajectory and input
-opts = optimoptions('fmincon','Algorithm','sqp','MaxFunEvals',15000);
+opts = optimoptions('fmincon','Algorithm',
+            'sqp','MaxFunEvals',15000);
 
 tic
-[z,fval] = fmincon(f,[x0(1); zeros(N*(nx+nu)-1,1)],[],[],Aeq,beq,vlb,vub,@constraint,opts); 
+[z,fval] = fmincon(f,[x0(1); zeros(N*(nx+nu)-1,1)]
+        ,[],[],Aeq,beq,vlb,vub,@constraint,opts); 
 t1=toc;
 
 
