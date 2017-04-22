@@ -1,0 +1,342 @@
+clear; clc;
+
+
+%% q = 0.1
+states1 = csvread('ex10_2_q01.csv');
+states2 = csvread('ex10_2_q1.csv');
+states3 = csvread('ex10_2_q10.csv');
+
+figure(1)
+
+subplot(3,2,[1,2])
+stairs(states1(1:81,1),states1(1:81,2),'m'),grid
+stairs(states2(1:81,1),states2(1:81,2),'b')
+stairs(states3(1:81,1),states3(1:81,2),'g')
+ylabel('u')
+title('q = 0.1','FontSize',11);
+legend('q = 0.1','q = 1','q = 10')
+
+subplot(3,2,3)
+plot(states1(1:81,1),states1(1:81,3),'m'),grid
+plot(states2(1:81,1),states2(1:81,3),'b')
+plot(states3(1:81,1),states3(1:81,3),'g')
+ylabel('lambda')
+axis([0 20 -inf inf])
+legend('q = 0.1','q = 1','q = 10')
+
+subplot(3,2,4)
+plot(states1(1:81,1),states1(1:81,4),'m'),grid
+plot(states1(1:81,1),states1(1:81,4),'b')
+plot(states1(1:81,1),states1(1:81,4),'g')
+ylabel('r')
+axis([0 20 -inf inf])
+legend('q = 0.1','q = 1','q = 10')
+
+subplot(3,2,5)
+plot(states1(1:81,1),states1(1:81,5),'m'),grid
+plot(states1(1:81,1),states1(1:81,5),'b')
+plot(states1(1:81,1),states1(1:81,5),'g')
+ylabel('p'),xlabel('t')
+legend('q = 0.1','q = 1','q = 10')
+
+subplot(3,2,6)
+plot(states1(1:81,1),states1(1:81,6),'m'),grid
+plot(states1(1:81,1),states1(1:81,6),'b')
+plot(states1(1:81,1),states1(1:81,6),'g')
+ylabel('pdot'),xlabel('t')
+legend('q = 0.1','q = 1','q = 10')
+
+%% q = 1
+figure(2)
+
+subplot(3,2,[1,2])
+stairs(states2(1:81,1),states2(1:81,2),'m'),grid
+ylabel('u')
+title('q = 1','FontSize',11);
+
+subplot(3,2,3)
+plot(states2(1:81,1),states2(1:81,3),'m'),grid
+ylabel('lambda')
+axis([0 20 -inf inf])
+
+subplot(3,2,4)
+plot(states2(1:81,1),states2(1:81,4),'m'),grid
+ylabel('r')
+axis([0 20 -inf inf])
+
+subplot(3,2,5)
+plot(states2(1:81,1),states2(1:81,5),'m'),grid
+ylabel('p'),xlabel('t')
+
+subplot(3,2,6)
+plot(states2(1:81,1),states2(1:81,6),'m'),grid
+ylabel('pdot'),xlabel('t')
+
+%% q = 10
+figure(3)
+
+
+subplot(3,2,[1,2])
+stairs(states3(1:81,1),states3(1:81,2),'m'),grid
+ylabel('u')
+title('q = 10','FontSize',11);
+
+subplot(3,2,3)
+plot(states3(1:81,1),states3(1:81,3),'m'),grid
+ylabel('lambda')
+axis([0 20 -inf inf])
+
+subplot(3,2,4)
+plot(states3(1:81,1),states3(1:81,4),'m'),grid
+ylabel('r')
+axis([0 20 -inf inf])
+
+subplot(3,2,5)
+plot(states3(1:81,1),states3(1:81,5),'m'),grid
+ylabel('p'),xlabel('t')
+
+subplot(3,2,6)
+plot(states3(1:81,1),states3(1:81,6),'m'),grid
+ylabel('pdot'),xlabel('t')
+
+
+%% q = 1 and follow
+measurements = csvread('ex10_2_measured.csv');
+
+figure(4)
+
+subplot(3,2,[1,2])
+stairs(states2(1:81,1),states2(1:81,2),'m'),grid
+ylabel('u')
+title('Optimal and measured trajectory without feedback.','FontSize',11);
+
+subplot(3,2,3)
+hold on
+plot(states2(1:81,1),states2(1:81,3),'m')
+plot(measurements(:,1),measurements(:,2),'b'),grid
+ylabel('lambda')
+axis([0 20 -inf inf])
+
+subplot(3,2,4)
+hold on
+plot(states2(1:81,1),states2(1:81,4),'m')
+plot(measurements(:,1),measurements(:,3),'b'),grid
+ylabel('r')
+axis([0 20 -inf inf])
+
+subplot(3,2,5)
+hold on
+plot(states2(1:81,1),states2(1:81,5),'m')
+plot(measurements(:,1),measurements(:,4),'b'),grid
+ylabel('p'),xlabel('t')
+axis([0 20 -inf inf])
+
+subplot(3,2,6)
+hold on
+plot(states2(1:81,1),states2(1:81,6),'m')
+plot(measurements(:,1),measurements(:,5),'b'),grid
+ylabel('pdot'),xlabel('t')
+axis([0 20 -inf inf])
+
+%% q = 1 with feedback
+measurements = csvread('ex10_3_measured_LQ.csv');
+
+figure(5)
+
+subplot(3,2,[1,2])
+stairs(states2(1:81,1),states2(1:81,2),'m'),grid
+ylabel('u')
+title('Optimal and measured trajectory with feedback','FontSize',11);
+
+subplot(3,2,3)
+hold on
+plot(states2(1:81,1),states2(1:81,3),'m')
+plot(measurements(:,1),measurements(:,2),'b'),grid
+ylabel('lambda')
+axis([0 20 -inf inf])
+
+subplot(3,2,4)
+hold on
+plot(states2(1:81,1),states2(1:81,4),'m')
+plot(measurements(:,1),measurements(:,3),'b'),grid
+ylabel('r')
+axis([0 20 -inf inf])
+
+subplot(3,2,5)
+hold on
+plot(states2(1:81,1),states2(1:81,5),'m')
+plot(measurements(:,1),measurements(:,4),'b'),grid
+ylabel('p'),xlabel('t')
+axis([0 20 -inf inf])
+
+subplot(3,2,6)
+hold on
+plot(states2(1:81,1),states2(1:81,6),'m')
+plot(measurements(:,1),measurements(:,5),'b'),grid
+ylabel('pdot'),xlabel('t')
+axis([0 20 -inf inf])
+
+%% Elevation contraint without feedback
+measurements = csvread('ex10_4_measured_nofb_t_states.csv');
+optimal = csvread('ex10_4_optimal.csv');
+
+figure(6)
+
+subplot(3,2,1)
+hold on
+plot(optimal(1:81,1),optimal(1:81,2),'m')
+plot(measurements(:,1),measurements(:,2),'b'),grid
+ylabel('lambda')
+axis([0 20 -inf inf])
+
+subplot(3,2,2)
+hold on
+plot(optimal(1:81,1),optimal(1:81,3),'m')
+plot(measurements(:,1),measurements(:,3),'b'),grid
+ylabel('r')
+axis([0 20 -inf inf])
+
+subplot(3,2,3)
+hold on
+plot(optimal(1:81,1),optimal(1:81,4),'m')
+plot(measurements(:,1),measurements(:,4),'b'),grid
+ylabel('p'),xlabel('t')
+axis([0 20 -inf inf])
+
+subplot(3,2,4)
+hold on
+plot(optimal(1:81,1),optimal(1:81,5),'m')
+plot(measurements(:,1),measurements(:,5),'b'),grid
+ylabel('pdot'),xlabel('t')
+axis([0 20 -inf inf])
+
+subplot(3,2,5)
+hold on
+plot(optimal(1:81,1),optimal(1:81,6),'m')
+plot(measurements(:,1),measurements(:,6),'b'),grid
+ylabel('e'),xlabel('t')
+axis([0 20 -inf inf])
+
+subplot(3,2,6)
+hold on
+plot(optimal(1:81,1),optimal(1:81,7),'m')
+plot(measurements(:,1),measurements(:,7),'b'),grid
+ylabel('edot'),xlabel('t')
+axis([0 20 -inf inf])
+
+
+set(gcf,'NextPlot','add');
+axes;
+h = title('Constraint on elevation, without feedback.');
+set(gca,'Visible','off');
+set(h,'Visible','on');
+
+
+%% Elevation contraint with feedback
+measurements = csvread('ex10_4_measured_fb_elevconst_t_states.csv');
+optimal = csvread('ex10_4_optimal.csv');
+
+figure(7)
+
+subplot(3,2,1)
+hold on
+plot(optimal(1:81,1),optimal(1:81,2),'m',measurements(:,1),measurements(:,2),'b'),grid
+ylabel('lambda')
+axis([0 20 -inf inf])
+box on
+
+subplot(3,2,2)
+hold on
+plot(optimal(1:81,1),optimal(1:81,3),'m')
+plot(measurements(:,1),measurements(:,3),'b'),grid
+ylabel('r')
+axis([0 20 -inf inf])
+
+subplot(3,2,3)
+hold on
+plot(optimal(1:81,1),optimal(1:81,4),'m')
+plot(measurements(:,1),measurements(:,4),'b'),grid
+ylabel('p'),xlabel('t')
+axis([0 20 -inf inf])
+
+subplot(3,2,4)
+hold on
+plot(optimal(1:81,1),optimal(1:81,5),'m')
+plot(measurements(:,1),measurements(:,5),'b'),grid
+ylabel('pdot'),xlabel('t')
+axis([0 20 -inf inf])
+
+subplot(3,2,5)
+hold on
+plot(optimal(1:81,1),optimal(1:81,6),'m')
+plot(measurements(:,1),measurements(:,6),'b'),grid
+ylabel('e'),xlabel('t')
+axis([0 20 -inf inf])
+
+subplot(3,2,6)
+hold on
+plot(optimal(1:81,1),optimal(1:81,7),'m')
+plot(measurements(:,1),measurements(:,7),'b'),grid
+ylabel('edot'),xlabel('t')
+axis([0 20 -inf inf])
+
+
+set(gcf,'NextPlot','add');
+axes;
+h = title('Constraint on elevation, with feedback.');
+set(gca,'Visible','off');
+set(h,'Visible','on');
+
+%% Travelrate constraint 
+measurements = csvread('ex10_4_measured_fb_travelconst_t_states.csv');
+optimal = csvread('ex10_4_optimal.csv');
+
+figure(8)
+
+subplot(3,2,1)
+hold on
+plot(optimal(1:81,1),optimal(1:81,2),'m',measurements(:,1),measurements(:,2),'b'),grid
+ylabel('lambda')
+axis([0 20 -inf inf])
+box on
+
+subplot(3,2,2)
+hold on
+plot(optimal(1:81,1),optimal(1:81,3),'m')
+plot(measurements(:,1),measurements(:,3),'b'),grid
+ylabel('r')
+axis([0 20 -inf inf])
+
+subplot(3,2,3)
+hold on
+plot(optimal(1:81,1),optimal(1:81,4),'m')
+plot(measurements(:,1),measurements(:,4),'b'),grid
+ylabel('p'),xlabel('t')
+axis([0 20 -inf inf])
+
+subplot(3,2,4)
+hold on
+plot(optimal(1:81,1),optimal(1:81,5),'m')
+plot(measurements(:,1),measurements(:,5),'b'),grid
+ylabel('pdot'),xlabel('t')
+axis([0 20 -inf inf])
+
+subplot(3,2,5)
+hold on
+plot(optimal(1:81,1),optimal(1:81,6),'m')
+plot(measurements(:,1),measurements(:,6),'b'),grid
+ylabel('e'),xlabel('t')
+axis([0 20 -inf inf])
+
+subplot(3,2,6)
+hold on
+plot(optimal(1:81,1),optimal(1:81,7),'m')
+plot(measurements(:,1),measurements(:,7),'b'),grid
+ylabel('edot'),xlabel('t')
+axis([0 20 -inf inf])
+
+set(gcf,'NextPlot','add');
+axes;
+h = title('Constraint on travelrate.');
+set(gca,'Visible','off');
+set(h,'Visible','on');
